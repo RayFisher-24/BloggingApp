@@ -1,0 +1,290 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Phozogy Template">
+    <meta name="keywords" content="Phozogy, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Phozogy | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Quantico:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section header-normal">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo">
+                        <a href="{% url 'index' %}">
+                            <img src="{% static 'img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                    <nav class="nav-menu mobile-menu">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li> 
+                            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
+                            
+                        </ul>
+                    </nav>
+                    <div class="top-search search-switch">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div id="mobile-menu-wrap"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="bo-links">
+                        <a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
+                        <span>Blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    {% for act in acts %}
+                    <div class="blog-item">
+                        <div class="bi-pic">
+                            <img src="{{act.image1.url}}" alt="{{act.alt}}" height="320" width="320">
+                        </div>
+                        <div class="bi-text">
+                            <div class="label">Article</div>
+                            <ul></ul>
+                            <div class="fp-text">
+                               <h3>{{act.title}}</h3>
+                            </div>
+                            <ul>
+                                <li>by <span>{{act.writter}}</span></li>
+                                <li>{{act.date}}</li>
+                            </ul>
+                            <p>{{act.head2 | truncatechars:248}}
+                            </p>
+                            <div class="load-more-btn">
+                              <a href="blog/blogpost/{{act.slug}}">read more</a>
+                            </div> 
+                        </div>
+                    </div>
+                   {% endfor %}
+                    <div class="pagination">
+                        <span class="blog-pagination">
+                            {% if acts.has_previous %}
+                              <a href="?page=1">&laquo; first</a>
+                              <a href="?page={{ acts.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                              Page {{ acts.number }} of {{ acts.paginator.num_pages }}
+                            </span>
+
+                            {% if acts.has_next %}
+                              <a href="?page={{ acts.next_page_number }}">next</a>
+                              <a href="?page={{ acts.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>        
+                </div>
+                <div class="col-lg-3">
+                    <div class="blog-sidebar">
+                        <div class="bs-item s-mb">
+                            <h5>Shop</h5>
+                            <div class="bi-feature-post">
+                                <a href="https://colorlib.com" target="_blank" class="fp-item">
+                                    <div class="fp-pic">
+                                        <img src="{% static 'img/blog/fp-1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="fp-text">
+                                        <h6>This Photograph Has Elderly Couples...</h6>
+                                        <span>Get now</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="fp-item">
+                                    <div class="fp-pic">
+                                        <img src="{% static 'img/blog/fp-2.jpg' %}" alt="">
+                                    </div>
+                                    <div class="fp-text">
+                                        <h6>Budget Gear Guide: The Best Cheap Off...</h6>
+                                        <span>Aug,15, 2019</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="fp-item">
+                                    <div class="fp-pic">
+                                        <img src="{% static 'img/blog/fp-3.jpg' %}" alt="">
+                                    </div>
+                                    <div class="fp-text">
+                                        <h6>Know Before You Go: Guide to Disney...</h6>
+                                        <span>Aug,15, 2019</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="fp-item">
+                                    <div class="fp-pic">
+                                        <img src="{% static 'img/blog/fp-4.jpg' %}" alt="">
+                                    </div>
+                                    <div class="fp-text">
+                                        <h6>Budget Gear Guide: The Best Cheap Off...</h6>
+                                        <span>Aug,15, 2019</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="fp-item">
+                                    <div class="fp-pic">
+                                        <img src="{% static 'img/blog/fp-5.jpg' %}" alt="">
+                                    </div>
+                                    <div class="fp-text">
+                                        <h6>Know Before You Go: Guide to Disney...</h6>
+                                        <span>Aug,15, 2019</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="bs-item s-mb">
+                            <h5>Subscribe</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor.</p>
+                            <div class="bi-subscribe">
+                                <form action="/blog" method="post">
+                                    {% csrf_token %}
+                                    <input type="text" name="name" placeholder="Name">
+                                    <input type="text" name="email" placeholder="Email">
+                                    <button type="submit" class="site-btn">Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="bs-item">
+                            <h5>Social Life</h5>
+                            <div class="bi-insta">
+                                <img src="{% static 'img/blog/insta-1.jpg' %}" alt="">
+                                <img src="{% static 'img/blog/insta-2.jpg' %}" alt="">
+                                <img src="{% static 'img/blog/insta-3.jpg' %}" alt="">
+                                <img src="{% static 'img/blog/insta-4.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+<!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="fs-about">
+                        <div class="fa-logo">
+                            <a href="#">
+                                <img src="{% static 'img/f-logo.png' %}" alt="">
+                            </a>
+                        </div>
+                        <p>Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua.</p>
+                        <div class="fa-social">
+                            <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://instagram.com" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="fs-widget">
+                        <h5>Best images</h5>
+                        <div class="fw-instagram">
+                            <img src="{% static 'img/instagram/insta-1.jpg' %}" alt="">
+                            <img src="{% static 'img/instagram/insta-2.jpg' %}" alt="">
+                            <img src="{% static 'img/instagram/insta-3.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="fs-widget">
+                        <h5>Quick links</h5>
+                        <ul>
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                            <li><a href="{% url 'blog' %}">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="fs-widget">
+                        <h5>Contact Us</h5>
+                        <p><i class="fa fa-phone">     +91 9123325003</p></i>
+                        <p><i class="fa fa-whatsapp">     +91 9123325003</p></i>
+                        <p><i class="fa fa-envelope-o">     a@gmail.com</p></i>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
